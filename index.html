@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Scheduler</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src=“https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js” integrity=“sha256-ABVkpwb9K9PxubvRrHMkk6wmWcIHUE9eBxNZLXYQ84k=”
+        crossorigin=“anonymous”></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid" background="assets/images/train2.jpg">
+            <div class="image-train">
+                <img src="assets/images/train2.jpg" class="img-fluid" alt="Responsive image">
+                <div class="container">
+                    <h1 class="display-4">Train Schedule</h1>
+                    <p class="lead">Choo Chee. Choo Chee</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h5 class="card-header">Current Train Schedule</h5>
+            <div class="card-body">
+                <table class="table" id="current-employee">
+                    <thead>
+                        <tr>
+                            <th scope="col">Train Name</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Frequency (min)</th>
+                            <th scope="col">Next Arrival</th>
+                            <th scope="col">Minutes Away</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="card">
+            <div class="card-header">
+                Add Train
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Train Name</label>
+                        <input class="form-control" id="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Destination</label>
+                        <input class="form-control" id="role">
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">First Train Time(HH:mm - military time</label>
+                        <input class="form-control" id="startDate" placeholder="EX: DD/MM/YY">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthlyRate">Frequency min</label>
+                        <input class="form-control" id="monthlyRate">
+                    </div>
+                    <button type="submit" id="add-train" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+</body>
+
+</html>
