@@ -1,0 +1,23 @@
+.card-header {
+  color: white;
+  background-color: rgb(13, 121, 163);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container-text {
+  font-family: Arial, Helvetica, sans-serif;
+  align-content: center;
+  color: white;
+  margin-left: 100px;
+}
+#add-train {
+  color: white;
+  background-color: rgb(13, 121, 163);
+}
+
+.jumbotron {
+  background-image: url("images/train2.jpg");
+  /* background-position: 0% 25%; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}

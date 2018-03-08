@@ -9,28 +9,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
+    <script src="moment.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src=“https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js” integrity=“sha256-ABVkpwb9K9PxubvRrHMkk6wmWcIHUE9eBxNZLXYQ84k=”
-        crossorigin=“anonymous”></script>
+
 </head>
 
 <body>
     <div class="container">
-        <div class="jumbotron jumbotron-fluid" background="assets/images/train2.jpg">
-            <div class="image-train">
-                <img src="assets/images/train2.jpg" class="img-fluid" alt="Responsive image">
-                <div class="container">
-                    <h1 class="display-4">Train Schedule</h1>
-                    <p class="lead">Choo Chee. Choo Chee</p>
-                </div>
+        <div class="jumbotron jumbotron-fluid">
+
+            <div class="container-text">
+                <h1 class="display-4">Train Schedule</h1>
+                <p class="lead">Choo Chee. Choo Chee</p>
             </div>
+
         </div>
 
         <div class="card">
             <h5 class="card-header">Current Train Schedule</h5>
             <div class="card-body">
-                <table class="table" id="current-employee">
+                <table class="table" id="current-train">
                     <thead>
                         <tr>
                             <th scope="col">Train Name</th>
@@ -53,19 +52,19 @@
                 <form>
                     <div class="form-group">
                         <label for="name">Train Name</label>
-                        <input class="form-control" id="Name">
+                        <input class="form-control" id="name">
                     </div>
                     <div class="form-group">
-                        <label for="role">Destination</label>
-                        <input class="form-control" id="role">
+                        <label for="destination">Destination</label>
+                        <input class="form-control" id="destination">
                     </div>
                     <div class="form-group">
-                        <label for="startDate">First Train Time(HH:mm - military time</label>
-                        <input class="form-control" id="startDate" placeholder="EX: DD/MM/YY">
+                        <label for="firstTrain">First Train Time(HH:mm - military time)</label>
+                        <input class="form-control" id="firstTrain" placeholder="EX:HH:mm">
                     </div>
                     <div class="form-group">
-                        <label for="monthlyRate">Frequency min</label>
-                        <input class="form-control" id="monthlyRate">
+                        <label for="frequency">Frequency min</label>
+                        <input class="form-control" id="frequency">
                     </div>
                     <button type="submit" id="add-train" class="btn btn-primary">Submit</button>
                 </form>
