@@ -37,8 +37,34 @@ $("#add-train").on("click", function() {
     .val()
     .trim();
 
-  //call moment function
   momentCal();
+});
+
+function momentCal() {
+  //push back 1 year
+  var firstTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
+  console.log(firstTimeConverted);
+
+  // Current Time
+  var time = moment();
+  console.log("CURRENT TIME: " + moment(time).format("hh:mm"));
+
+  // Difference between the times
+  var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+  console.log("DIFFERENCE IN TIME: " + diffTime);
+
+  // Time apart (remainder)
+  var tRemainder = diffTime % frequency;
+  console.log(tRemainder);
+
+  // Minute Until Train
+  minsAway = frequency - tRemainder;
+  console.log("MINUTES TILL TRAIN: " + minsAway);
+
+  // Next Train
+  arrival = moment().add(minsAway, "minutes");
+  console.log("ARRIVAL TIME: " + moment(arrival).format("hh:mm"));
+  arrival = moment(arrival).format("hh:mm");
 
   var newTrain = {
     name: name,
@@ -51,80 +77,41 @@ $("#add-train").on("click", function() {
   console.log(newTrain);
   //push the input to database
   database.ref().push(newTrain);
-});
+}
 
 database.ref().on("child_added", function(snapshot) {
-  console.log(snapshot.val());
-  console.log(snapshot.val().name);
-  console.log(snapshot.val().destination);
-  console.log(snapshot.val().firstTrain);
-  console.log(snapshot.val().arrival);
-  console.log(snapshot.val().frequency);
-  console.log(snapshot.val().minsAway);
+  var childOrigTime = snapshot.val().firstTime;
+  var childFreq = snapshot.val().frequency;
+  //   updateTimes(childOrigTime, childFreq);
 
   $("#current-train").append("<tbody>");
   $("#current-train").append("<tr>");
 
-  $("#current-employee").append("<td>" + snapshot.val().name + "</td>");
-  $("#current-employee").append("<td>" + snapshot.val().destination + "</td>");
-  $("#current-employee").append("<td>" + snapshot.val().firstTrain + "</td>");
-  $("#current-employee").append("<td>" + snapshot.val().arrival + "</td>");
-  $("#current-employee").append("<td>" + snapshot.val().frequency + "</td>");
-  $("#current-employee").append("<td>" + snapshot.val().minsAway + "</td>");
+  $("#current-train").append("<td>" + snapshot.val().name + "</td>");
+  $("#current-train").append("<td>" + snapshot.val().destination + "</td>");
+  $("#current-train").append("<td>" + snapshot.val().frequency + "</td>");
+  $("#current-train").append("<td>" + arrival + "</td>");
+  $("#current-train").append("<td>" + minsAway + "</td>");
+
+  $("#current-train").append("</tbody>");
+  $("#current-train").append("</tr>");
 });
+//THIS FUNCTION DID NOT WORK FOR NOW. update the arrival time was time passes. It kept giivng me NaN
 
-function momentCal() {
-  //push back 1 year
-  var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
-  console.log(firstTrainConverted);
+// function updateTimes(origTime, freq) {
+//   var firstTimeConverted = moment(origTime, "HH:mm").subtract(1, "years");
+//   var time = moment();
+//   var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
 
-  // Current Time
-  var currentTime = moment();
-  console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+//   // Time apart (remainder)
+//   var tRemainder = diffTime % freq;
 
-  // Difference between the times
-  var diffTime = moment().diff(moment(currentTime), "minutes");
-  console.log("DIFFERENCE IN TIME: " + diffTime);
+//   // Minute Until Train
+//   minsAway = freq - tRemainder;
+//   console.log("UPDATED MINUTES TILL TRAIN: " + minsAway);
 
-  // Time apart (remainder)
-  var tRemainder = diffTime % frequency;
-  console.log(tRemainder);
-
-  // Minute Until Train
-  var minsAway = frequency - tRemainder;
-  console.log("MINUTES TILL TRAIN: " + minsAway);
-
-  // Next Train
-  var arrival = moment().add(minsAway, "minutes");
-  console.log("ARRIVAL TIME: " + moment(arrival).format("hh:mm"));
-}
-
-//assumption
-// var frequency = 3;
-
-// // Time is 3:30 AM
-// var firstTrain = "03:30";
-
-// // First Time (pushed back 1 year to make sure it comes before current time)
-// var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
-// console.log(firstTrainConverted);
-
-// // Current Time
-// var currentTime = moment();
-// console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-
-// // Difference between the times
-// var diffTime = moment().diff(moment(currentTime), "minutes");
-// console.log("DIFFERENCE IN TIME: " + diffTime);
-
-// // Time apart (remainder)
-// var tRemainder = diffTime % frequency;
-// console.log(tRemainder);
-
-// // Minute Until Train
-// var tMinutesTillTrain = frequency - tRemainder;
-// console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-
-// // Next Train
-// var arrival = moment().add(tMinutesTillTrain, "minutes");
-// console.log("ARRIVAL TIME: " + moment(arrival).format("hh:mm"));
+//   // Next Train
+//   arrival = moment().add(minsAway, "minutes");
+//   console.log("UPDATED ARRIVAL TIME: " + moment(arrival).format("hh:mm"));
+//   arrival = moment(arrival).format("hh:mm");
+// }
